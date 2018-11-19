@@ -1,0 +1,21 @@
+<form action="/user/register" method="POST">
+    <div class="form-group">
+        <label for="exampleInputEmail1">User Name</label>
+        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter username"
+            name="User[username]">
+    </div>
+    <div class="form-group">
+        <label for="exampleInputPassword1">Password</label>
+        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" name="User[password]">
+    </div>
+     <div class="form-group">
+        <span>what Role you are in ?</span>
+        <select class="form-control" name="User[role]" required>
+            <option value="Vistor">Vistor</option>
+            <option value="Admin">Admin</option>
+            <option value="Student">Student</option>
+        </select>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Register</button>
+</form>

@@ -1,0 +1,63 @@
+<div class="container">
+    <form action="/person/update/<%= person.id %>" method="POST">
+        <div class="form-group">
+            <label>Event Name</label>
+            <input type="text" class="form-control" name="Person[eventName]" value="<%= person.eventName %>" required>
+        </div>
+        <div class="form-group">
+            <label>Short Description</label>
+            <input type="text" class="form-control" name="Person[shortDescription]" value="<%= person.shortDescription %>"
+                required>
+        </div>
+        <div class="form-group">
+            <label>Full Description</label>
+            <input type="text" class="form-control" name="Person[fullDescription]" value="<%= person.fullDescription %>"
+                required>
+        </div>
+        <div class="form-group">
+            <label>Image URL</label>
+            <input type="text" class="form-control" name="Person[imageURL]" value="<%= person.imageURL %>" required>
+        </div>
+        <div class="form-group col-6">
+            <span>Organizer</span>
+            <select class="form-control" name="Person[organizer]" value="<%= person.organizer %>">
+                <option value="nan">Please select a team:</option>
+                <option value="Avengers">Avengers</option>
+                <option value="Justice League">Justice League</option>
+            </select>
+        </div>
+        <!--Datepicker-->
+        <div class="form-group col-6">
+            <label>Event Date</label>
+            <input data-provide="datepicker" type="text" class="form-control" name="Person[eventDate]" value="<%= person.eventDate %>"
+                required>
+        </div>
+        <!--Datepicker END-->
+        <div class="form-group col-6">
+            <label>Time</label>
+            <input type="text" class="form-control" name="Person[time]" value="<%= person.time %>" required>
+        </div>
+        <!--done here-->
+        <div class="col-6">
+            <span>Venue</span>
+            <select class="form-control">
+                <option value="nan">Please select a team:</option>
+                <option value="Avengers">Avengers</option>
+                <option value="JLA">Justice League</option>
+            </select>
+        </div>
+        <div class="form-group col-6">
+            <label>Quota</label>
+            <input type="number" class="form-control" name="Person[quota]" value="<%= person.quota %>" required>
+        </div>
+        <!--Highlight Event-->
+        <input class="col-3" name="box" type="checkbox" value="Highlight Event" checked>
+        <label>Highlight Event</label>
+        <!--Highlight Event-->
+        <button type="submit" class="btn btn-primary col-3">Submit</button>
+        <!-- <a href="/person/delete/<%= person.id %>" class="btn btn-danger">delete</a> -->
+        <!-- <button type="button" class="btn btn-danger" onclick="deletePerson('<%= person.id %>')">Delete</button> -->
+        <div id="deleteResult"></div>
+
+    </form>
+</div>

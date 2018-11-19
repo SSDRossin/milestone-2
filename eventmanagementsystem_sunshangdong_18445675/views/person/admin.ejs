@@ -1,0 +1,59 @@
+<!--admin.ejs-->
+<table class="table">
+    <% persons.forEach( function(model) { %>
+    <tr>
+        <td>
+            <%= model.id %>
+        </td>
+        <td><a class="nav-item ns-link active" href="update/<%= model.id %> ">
+                <%= model.eventName %>
+        </td>
+        <td>
+            <%= model.organizer %>
+        </td>
+        <td>
+            <a href="/person/update/<%= model.id %>" class="btn btn-warning">Update</a>
+        </td>
+        <td>
+            <button type="button" class="btn btn-danger" onclick="deletePerson('<%= model.id %>')">Delete</button>
+        </td>
+        <td>
+            <a href='/user/<%= req.session.userid %>/participate/add/<%= model.id %>' class="btn btn-info">Registration</a>
+        </td>
+    </tr>
+    <% }); %>
+
+</table>
+
+<script>
+
+    async function deletePerson(id) {
+
+        var dr = document.getElementById("deleteResult");
+
+        var r = confirm("Confirm Delete?");
+        if (r == true) {
+
+            var response = await fetch("/person/" + id, {
+                method: "DELETE",
+                credentials: 'same-origin',
+
+            });
+            
+            console.log(response);
+            
+            if (response.status == 200) {
+                var data = await response.text();
+                alert("ok");
+                location.reload(true);
+            } else {
+                dr.innerHTML = response.statusText;
+            }
+
+        } else {
+            dr.innerHTML = "cancelled";
+        }
+
+    };
+
+</script>

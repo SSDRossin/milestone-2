@@ -1,0 +1,63 @@
+<!--create.ejs-->
+<div class="container">
+    <form action="/person/create" method="POST">
+        <div class="row">
+            <div class="form-group col-6">
+                <label>Event Name</label>
+                <input type="text" class="form-control" name="Person[eventName]" required>
+            </div>
+            <div class="form-group col-6">
+                <label>Short Description</label>
+                <input type="text" class="form-control" name="Person[shortDescription]" required>
+            </div>
+            <div class="form-group col-6">
+                <label>Full Description</label>
+                <input type="text" class="form-control" name="Person[fullDescription]" required>
+            </div>
+            <div class="form-group col-6">
+                <label>Image URL</label>
+                <input type="text" class="form-control" name="Person[imageURL]" required>
+            </div>
+            <div class="col-6">
+                <span>Organizer</span>
+                <select class="form-control" onchange="teamSelected(this.value)" name="Person[organizer]">
+                    <option value="nan">Please select a organizer:</option>
+                    <option value="AIS">AIS</option>
+                    <option value="ITM">ITM</option>
+                </select>
+            </div>
+            <!--Datepicker-->
+            <div class="form-group col-6">
+                <tr><label>Event Date</label></tr>
+                <tr><input data-provide="datepicker" type="text" class="form-control" name="Person[eventDate]" required></tr>
+            </div>
+            <!--Datepicker END-->
+            <div class="form-group col-6">
+                <label>Time</label>
+                <input type="text" class="form-control" name="Person[time]" required>
+            </div>
+            <!--done here-->
+            <div class="col-6">
+                <span>Venue</span>
+                <select class="form-control">
+                    <option value="nan">Please select a Venue:</option>
+                    <option value="RRS">RRS</option>
+                    <option value="FSC">FSC</option>
+                </select>
+            </div>
+            <div class="form-group col-6">
+                <label>Quota MAX HKD200</label>
+                <input type="number" class="form-control" name="Person[quota]" min=0 max=200 required>
+            </div>
+            <!--Highlight Event-->
+            <input name="box" type="checkbox" value="Highlight Event" checked>
+            <label>Highlight Event</label>
+            <!--Highlight Event-->
+            <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+<script>
+    $('.datepicker').datepicker({
+        startDate: '-3d'
+    });
+</script>

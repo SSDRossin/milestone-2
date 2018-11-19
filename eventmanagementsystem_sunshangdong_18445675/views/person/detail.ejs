@@ -1,0 +1,30 @@
+<div class="row col-12">
+    <div class="col-12 col-sm-12 col-lg-12 col-xl-12 media form－inline">
+        <div class="media-left media-middle media-body">
+            <h4 class="media-heading">
+                <%= person.eventName %>
+            </h4>
+            <a href="#">
+                <img class='img-fluid' src="<%= person.imageURL %>""  />
+            </a>
+        </div>
+        <div class="media-body">
+                <ul class="list-group"><br><br>
+                    <li class="list-group-item">
+                        <%= person.fullDescription %>
+                    </li>
+                    <li class="list-group-item">Organizer:
+                        <%= person.organizer %>
+                    </li>
+                    <li class="list-group-item">Date:
+                        <%= person.eventDate %>
+                    </li>
+                    <li class="list-group-item">Time:
+                        <%= person.time %>
+                    </li>
+                    <li class="list-group-item">Venue: Hall</li>
+                    <li class="list-group-item">Quota: 100</li>
+                </ul>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,115 @@
+<!--Search.ejs-->
+
+<div class="container">
+
+    <!--paginating-->
+    <% const current = parseInt(req.query.page) || 1; %>
+    <nav aria-label="Page navigation example">
+        <ul class="pagination">
+            <li class="page-item">
+                <a class="page-link" href="/person/paginate/?page=<%= Math.max(current-1, 1) %>">Previous</a>
+            </li>
+
+            <% for (i = 1; i <= count; i++) { %>
+            <li class="page-item">
+                <a class="page-link" href="/person/paginate/?page=<%= i %>">
+                    <%= i %></a>
+            </li>
+            <% } %>
+
+            <li class="page-item">
+                <a class="page-link" href="/person/paginate/?page=<%= Math.min(current+1, count) %>">Next</a>
+            </li>
+        </ul>
+    </nav>
+    <!--paginating END-->
+    <!-- two event -->
+    <div class="row">
+        <% persons.forEach( function(model) { %>
+        <div class="card col-12 col-sm-6 col-lg-4 col-xl-4" style="width: 18rem;">
+            <img class="card-img-top" src="<%= model.imageURL %>" alt="Card image cap">
+            <div class="card-body">
+                <!-- 
+                    <a class="nav-item ns-link active" href="person/detail/<%= model.id %> ">
+                <%= model.eventName %><br><br>
+                <span class="sr-only">(current)</span>
+            </a> 
+        -->
+                <a class="card-title nav-item ns-link active" href="/person/detail/<%= model.id %>" >
+                    <%= model.eventName %>
+                </a>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                    card's content.</p>
+
+            </div>
+        </div>
+        <% }); %>
+        <!-- two event END-->
+
+        <!-- searching -->
+        <div class="card col-12 col-sm-6 col-lg-4 col-xl-4" style="width: 18rem;">
+            <form action="/person/paginate">
+                <div class="form-group">
+                    <label>Event Name</label>
+                    <input type="text" class="form-control" name="eventName">
+                </div>
+                <div>
+                    <span>Organizer</span>
+                    <select class="form-control" onchange="teamSelected(this.value)" name="organizer">
+                        <option value="nan">Please select a organizer:</option>
+                        <option value="AIS">AIS</option>
+                        <option value="ITM">ITM</option>
+                    </select>
+                </div>
+                <!--Datepicker-->
+                <div class="form-group">
+                    <label>Start Date</label>
+                    <input data-provide="datepicker" type="text" class="form-control" name="startDate">
+                </div>
+                <!--Datepicker END-->
+                <!--Datepicker-->
+                <div class="form-group">
+                    <label>End Date</label>
+                    <input data-provide="datepicker" type="text" class="form-control" name="endDate">
+                </div>
+                <!--Datepicker END-->
+                <div>
+                    <span>Venue</span>
+                    <select class="form-control" onchange="teamSelected(this.value)">
+                        <option value="nan">Please select a Venue:</option>
+                        <option value="RRS">RRS</option>
+                        <option value="FSC">FSC</option>
+                    </select>
+                </div>
+                <div>
+                    <span>Quota</span><br>
+                    Filter by price interval: <br>
+                    <b>$ 10</b>
+                    <input id="ex21" type="text" class="span2" value="" data-slider-min="10" data-slider-max="1000"
+                        data-slider-step="5" data-slider-value="[250,450]" />
+                    <b>$ 1000</b>
+                </div>
+                <br>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+        <!-- searching END -->
+    </div>
+
+</div>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/js/bootstrap-datepicker.js" integrity="sha256-ncetQ5WcFxZU3YIwggfwOwmewLVX4SHLBtDYnrsxooY="
+    crossorigin="anonymous"></script>
+<!-- Datepicker END -->
+<!-- Bootstrap-Slider -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.2.1/bootstrap-slider.js" integrity="sha256-uSKAQ/6AG8B7cBGa6Mn1nUKFvsJcZibBUMgGh+jBvx4="
+    crossorigin="anonymous"></script>
+<script>
+    $('.datepicker').datepicker({
+        startDate: '-3d'
+    });
+
+    // With JQuery
+    $("#ex21").slider({});
+</script>
